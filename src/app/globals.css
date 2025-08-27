@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (.dark &);
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,6 +19,12 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+/* Dark mode styles */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 body {
