@@ -5,13 +5,14 @@ import Header from '@/components/Header';
 import MessagesArea from '@/components/MessagesArea';
 import ChatGPTComponent from '@/components/ChatGPTComponent';
 import ImageGenerationComponent from '@/components/ImageGenerationComponent';
+import HuggingFaceComponent from '@/components/HuggingFaceComponent';
 import Footer from '@/components/Footer';
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
-  const [activeTab, setActiveTab] = useState<'chat' | 'image'>('chat');
+  const [activeTab, setActiveTab] = useState<'chat' | 'image' | 'huggingface'>('chat');
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Initialize dark mode from localStorage
@@ -74,6 +75,14 @@ export default function Home() {
                   isGeneratingImage={isGeneratingImage}
                   setIsGeneratingImage={setIsGeneratingImage}
                 />
+              )}
+
+              {activeTab === 'huggingface' && (
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">Hugging Face Integration</h3>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">Call small Hugging Face models directly from the app (requires HUGGINGFACE_API_TOKEN).</p>
+                  <HuggingFaceComponent messages={messages} setMessages={setMessages} />
+                </div>
               )}
             </div>
           </div>

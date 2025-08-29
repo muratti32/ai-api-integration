@@ -3,7 +3,7 @@ import { Message } from '@/types';
 
 interface MessagesAreaProps {
   messages: Message[];
-  activeTab: 'chat' | 'image';
+  activeTab: 'chat' | 'image' | 'huggingface';
   isLoading: boolean;
   isGeneratingImage: boolean;
 }
@@ -31,12 +31,14 @@ export default function MessagesArea({
           </div>
           <div className="space-y-2">
             <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
-              {activeTab === 'chat' ? 'Start a Conversation' : 'Create Amazing Images'}
+              {activeTab === 'chat' ? 'Start a Conversation' : activeTab === 'image' ? 'Create Amazing Images' : 'Hugging Face Playground'}
             </h3>
             <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base max-w-md">
-              {activeTab === 'chat' 
-                ? 'Ask me anything! I\'m here to help with questions, creative writing, coding, and more.' 
-                : 'Describe any image you can imagine and watch AI bring it to life in seconds.'
+              {activeTab === 'chat'
+                ? 'Ask me anything! I\'m here to help with questions, creative writing, coding, and more.'
+                : activeTab === 'image'
+                ? 'Describe any image you can imagine and watch AI bring it to life in seconds.'
+                : 'Try small Hugging Face models directly from this UI. Choose a model and send a prompt.'
               }
             </p>
           </div>
